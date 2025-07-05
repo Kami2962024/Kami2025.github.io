@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hommage au Dr Nehal Abdenacer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #34495e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .hero img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .hero img:hover {
+            transform: scale(1.05);
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background-color: var(--dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab {
+            padding: 1rem 2rem;
+            cursor: pointer;
+            color: white;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .tab:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .tab.active {
+            background-color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .hommage {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-style: italic;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .search-container {
+            margin: 2rem auto;
+            max-width: 600px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        #search-input {
+            padding: 0.8rem 1rem;
+            width: 70%;
+            border: 2px solid #ddd;
+            border-radius: 30px 0 0 30px;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.3s;
+        }
+        
+        #search-input:focus {
+            border-color: var(--primary);
+        }
+        
+        #search-button {
+            padding: 0 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        #search-button:hover {
+            background-color: #2980b9;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            height: 200px;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+        
+        .testimonial {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--secondary);
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary);
+            margin-top: 1rem;
+            text-align: right;
+        }
+        
+        .cv-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .cv-year {
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .resource-link {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+            text-decoration: none;
+            color: var(--text);
+        }
+        
+        .resource-link:hover {
+            transform: translateX(10px);
+        }
+        
+        .resource-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: var(--primary);
+        }
+        
+        .admin-panel {
+            background-color: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+        
+        .stat-label {
+            color: var(--dark);
+            font-size: 1rem;
+        }
+        
+        .drag-drop-area {
+            border: 2px dashed #ccc;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .drag-drop-area:hover {
+            border-color: var(--primary);
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                padding: 1rem;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hero">
+            <img src="https://via.placeholder.com/200" alt="Dr Nehal Abdenacer" id="mentor-photo">
+            <h1>Dr Nehal Abdenacer</h1>
+            <p>1957 - 2024</p>
+            <p>Médecin pneumologue et Homme hors du commun</p>
+        </div>
+    </header>
+    
+    <div class="tabs">
+        <div class="tab active" data-tab="hommage">Hommage</div>
+        <div class="tab" data-tab="biographie">Biographie</div>
+        <div class="tab" data-tab="cours">Cours & Vidéos</div>
+        <div class="tab" data-tab="galerie">Galerie</div>
+        <div class="tab" data-tab="temoignages">Témoignages</div>
+        <div class="tab" data-tab="contact">Contact</div>
+        <div class="tab" data-tab="admin"><i class="fas fa-lock"></i></div>
+    </div>
+    
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Rechercher des mots-clés...">
+        <button id="search-button"><i class="fas fa-search"></i></button>
+    </div>
+    
+    <div class="tab-content active" id="hommage-tab">
+        <div class="hommage">
+            <p>"Le Dr Nehal Abdenacer, Médecin pneumologue et Homme hors du commun, nous a quittés le 29 juin 2024. Médecin passionné, pédagogue exigeant et profondément humain, il a fait de sa vocation sa vie à soigner transmettre son savoir et accompagner. Il laisse derrière lui une empreinte inaltérable au cœur de ses proches, de ses élèves, de ses patients et de tous ceux qui ont croisé sa route. La mémoire de son existence vivra à travers le savoir qu'il a transmis, les valeurs qu'il a libérées et l'amour qu'il a déployé autour de lui. Reposez en paix cher ami et maître, votre lumière éclaire encore nos chemins. « Il y a des êtres dont c'est la lumière qui fait briller les autres »"</p>
+        </div>
+        
+        <h2>Parcours Professionnel</h2>
+        <div class="cv-item">
+            <div class="cv-year">2017-2018</div>
+            <p>DIU de TABACOLOGIE et d'aide au sevrage tabagique</p>
+        </div>
+        <div class="cv-item">
+            <div class="cv-year">2014-15</div>
+            <p>DIU « Poumon et maladies de systèmes »</p>
+        </div>
+        <div class="cv-item">
+            <div class="cv-year">2012-13</div>
+            <p>DIU « sommeil et sa pathologie »</p>
+        </div>
+        <div class="cv-item">
+            <div class="cv-year">2013</div>
+            <p>Formation (à Marseille) en endoscopie interventionnelle</p>
+        </div>
+        <div class="cv-item">
+            <div class="cv-year">Depuis 2005</div>
+            <p>Membre de la Société de Pneumologie de Langue Française</p>
+        </div>
+        <div class="cv-item">
+            <div class="cv-year">Depuis 2005</div>
+            <p>Membre de la société Algérienne de Pneumo-phtisiologie</p>
+        </div>
+        <div class="cv-item">
+            <div class="cv-year">Depuis 2000</div>
+            <p>Chef d'unité de consultation spécialisée de pneumologie dans une Unité de Contrôle et de Traitement des Maladies Respiratoires</p>
+        </div>
+        <div class="cv-item">
+            <div class="cv-year">Depuis 1988</div>
+            <p>Praticien Spécialiste exerçant à l'Etablissement Public Hospitalier de Rouiba – CHU Alger-EST, et attaché de cours à l'institut des sciences médicale d'Alger</p>
+        </div>
+        <div class="cv-item">
+            <div class="cv-year">Depuis 1994</div>
+            <p>Maître Assistant à la Faculté de Médecine d'Alger</p>
+        </div>
+        <div class="cv-item">
+            <div class="cv-year">1986</div>
+            <p>Diplôme d'Etudes Médicales Spéciales en Pneumo-Phtisiologie – Faculté de Médecine d'Alger</p>
+        </div>
+        <div class="cv-item">
+            <div class="cv-year">1982-1986</div>
+            <p>Résident de Spécialité en pneumo-phtisiologie à l'Etablissement Public Hospitalier de Rouiba – CHU Alger-EST</p>
+        </div>
+        <div class="cv-item">
+            <div class="cv-year">1982</div>
+            <p>Doctorat en Médecine – Faculté de Médecine d'Alger</p>
+        </div>
+    </div>
+    
+    <div class="tab-content" id="biographie-tab">
+        <h2>Biographie</h2>
+        <p>Le Dr Nehal Abdenacer est né le 13 mars 1957 à Boufarik (wilaya de Blida). Dès son plus jeune âge, il a montré un vif intérêt pour les sciences et une profonde compassion pour ses semblables, ce qui l'a naturellement conduit vers une carrière médicale.</p>
+        
+        <p>Après son doctorat en médecine obtenu en 1982 à la Faculté de Médecine d'Alger, il s'est spécialisé en pneumo-phtisiologie, domaine dans lequel il excellera pendant plus de quatre décennies. Sa carrière professionnelle l'a mené à l'Etablissement Public Hospitalier de Rouiba – CHU Alger-EST où il a exercé en tant que praticien spécialiste tout en enseignant à l'institut des sciences médicales d'Alger.</p>
+        
+        <p>Homme de science mais avant tout humaniste, le Dr Abdenacer a consacré sa vie à soigner, enseigner et accompagner ses patients et élèves avec une bienveillance et une exigence qui ont marqué tous ceux qui ont eu le privilège de le côtoyer.</p>
+        
+        <p>Parmi ses nombreuses réalisations, on compte la création et la direction d'une unité de consultation spécialisée de pneumologie, ainsi que de nombreuses formations spécialisées en France et en Algergie qui ont permis d'améliorer la prise en charge des patients atteints de pathologies respiratoires.</p>
+        
+        <p>Le Dr Nehal Abdenacer s'est éteint le 29 juin 2024 à Blida, laissant derrière lui un héritage médical et humain considérable.</p>
+    </div>
+    
+    <div class="tab-content" id="cours-tab">
+        <h2>Cours & Vidéos</h2>
+        
+        <a href="#" class="resource-link" data-type="youtube">
+            <div class="resource-icon"><i class="fab fa-youtube"></i></div>
+            <div>
+                <h3>Cours sur les pathologies respiratoires</h3>
+                <p>Conférence donnée en 2019 sur les nouvelles approches thérapeutiques</p>
+            </div>
+        </a>
+        
+        <a href="#" class="resource-link" data-type="drive">
+            <div class="resource-icon"><i class="fab fa-google-drive"></i></div>
+            <div>
+                <h3>Slides de cours - Pneumologie clinique</h3>
+                <p>Série de présentations utilisées pour l'enseignement des internes</p>
+            </div>
+        </a>
+        
+        <a href="#" class="resource-link" data-type="youtube">
+            <div class="resource-icon"><i class="fab fa-youtube"></i></div>
+            <div>
+                <h3>Interview sur le tabagisme</h3>
+                <p>Participation à une émission de santé publique en 2020</p>
+            </div>
+        </a>
+        
+        <a href="#" class="resource-link" data-type="drive">
+            <div class="resource-icon"><i class="fab fa-google-drive"></i></div>
+            <div>
+                <h3>Articles scientifiques</h3>
+                <p>Recueil des publications du Dr Abdenacer</p>
+            </div>
+        </a>
+        
+        <div class="viewer-container" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 id="viewer-title"></h3>
+                <button id="close-viewer" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">×</button>
+            </div>
+            <div id="viewer-content" style="height: 70vh; background: #f5f5f5; border-radius: 5px; display: flex; justify-content: center; align-items: center;">
+                <!-- Contenu dynamique -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="tab-content" id="galerie-tab">
+        <h2>Galerie Photos</h2>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/300x200" alt="Dr Abdenacer en conférence">
+                <div class="overlay">
+                    <p>Conférence internationale, Paris 2018</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/300x200" alt="Enseignement">
+                <div class="overlay">
+                    <p>Cours magistral à la faculté de médecine</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/300x200" alt="Remise de diplôme">
+                <div class="overlay">
+                    <p>Remise de diplôme à un étudiant</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/300x200" alt="Congrès médical">
+                <div class="overlay">
+                    <p>Participation à un congrès national</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/300x200" alt="Equipe médicale">
+                <div class="overlay">
+                    <p>Avec son équipe médicale</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/300x200" alt="Jeune médecin">
+                <div class="overlay">
+                    <p>Début de carrière, années 1980</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="tab-content" id="temoignages-tab">
+        <h2>Témoignages</h2>
+        
+        <div class="testimonial">
+            <p>"Le Dr Abdenacer n'était pas seulement un excellent médecin, c'était avant tout un homme d'une grande humanité. Sa capacité à écouter et à comprendre ses patients était exceptionnelle. Il m'a accompagné pendant des années dans le traitement de mon asthme sévère avec une patience et une bienveillance rares."</p>
+            <div class="testimonial-author">- Karim B., ancien patient</div>
+        </div>
+        
+        <div class="testimonial">
+            <p>"En tant qu'étudiant puis interne, le Dr Abdenacer a été pour moi bien plus qu'un enseignant. C'était un mentor qui nous poussait à donner le meilleur de nous-mêmes tout en nous soutenant dans les moments difficiles. Sa rigueur scientifique et son éthique professionnelle restent pour moi un modèle absolu."</p>
+            <div class="testimonial-author">- Dr Amel T., ancienne élève</div>
+        </div>
+        
+        <div class="testimonial">
+            <p>"Travailler à ses côtés pendant 15 ans a été un privilège. Son dévouement pour ses patients, son souci constant de se former aux dernières avancées médicales et son leadership bienveillant ont marqué toute notre équipe. L'hôpital ne sera plus jamais le même sans lui."</p>
+            <div class="testimonial-author">- Infirmière Samia L., collègue</div>
+        </div>
+        
+        <div class="testimonial">
+            <p>"Mon père était un homme passionné par la médecine mais aussi par la vie. Il croyait profondément que soigner ne se limitait pas à prescrire des traitements mais impliquait de comprendre la personne dans sa globalité. Cette philosophie guidait autant sa pratique médicale que sa vie personnelle."</p>
+            <div class="testimonial-author">- Selma A., fille</div>
+        </div>
+        
+        <h3 style="margin-top: 2rem;">Ajouter un témoignage</h3>
+        <div class="contact-form">
+            <div class="form-group">
+                <label for="testimonial-name">Votre nom</label>
+                <input type="text" id="testimonial-name" placeholder="Nom (facultatif)">
+            </div>
+            <div class="form-group">
+                <label for="testimonial-text">Votre témoignage</label>
+                <textarea id="testimonial-text" placeholder="Votre message..."></textarea>
+            </div>
+            <button class="submit-btn" id="submit-testimonial">Envoyer</button>
+        </div>
+    </div>
+    
+    <div class="tab-content" id="contact-tab">
+        <h2>Contact</h2>
+        <p>Pour partager vos souvenirs, anecdotes ou demandes concernant le Dr Abdenacer, vous pouvez utiliser le formulaire ci-dessous :</p>
+        
+        <div class="contact-form">
+            <div class="form-group">
+                <label for="contact-name">Votre nom</label>
+                <input type="text" id="contact-name" placeholder="Votre nom">
+            </div>
+            <div class="form-group">
+                <label for="contact-email">Votre email</label>
+                <input type="email" id="contact-email" placeholder="Votre email">
+            </div>
+            <div class="form-group">
+                <label for="contact-message">Votre message</label>
+                <textarea id="contact-message" placeholder="Votre message..."></textarea>
+            </div>
+            <button class="submit-btn" id="submit-contact">Envoyer</button>
+        </div>
+    </div>
+    
+    <div class="tab-content" id="admin-tab">
+        <div id="login-section">
+            <h2>Espace Administrateur</h2>
+            <div class="login-form">
+                <div class="form-group">
+                    <label for="admin-username">Nom d'utilisateur</label>
+                    <input type="text" id="admin-username" placeholder="Administrateur">
+                </div>
+                <div class="form-group">
+                    <label for="admin-password">Mot de passe</label>
+                    <input type="password" id="admin-password" placeholder="Mot de passe">
+                </div>
+                <button class="submit-btn" id="admin-login">Se connecter</button>
+            </div>
+        </div>
+        
+        <div class="admin-panel" id="admin-panel">
+            <h2>Panneau d'administration</h2>
+            <p>Bienvenue, Kami Kami</p>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-label">Visites cette semaine</div>
+                    <div class="stat-value" id="weekly-visits">1,247</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Visites ce mois</div>
+                    <div class="stat-value" id="monthly-visits">5,892</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Visites totales</div>
+                    <div class="stat-value" id="total-visits">24,156</div>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 2rem;">Ajouter du contenu</h3>
+            
+            <div class="drag-drop-area" id="drag-drop-area">
+                <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: #ccc; margin-bottom: 1rem;"></i>
+                <p>Glissez-déposez des fichiers ici ou cliquez pour sélectionner</p>
+                <p style="font-size: 0.8rem; color: #777;">Formats supportés : JPG, PNG, PDF, PPT, MP4</p>
+                <input type="file" id="file-input" style="display: none;" multiple>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <h3>Gérer les ressources</h3>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <button class="submit-btn" id="add-youtube"><i class="fab fa-youtube"></i> Ajouter une vidéo YouTube</button>
+                    <button class="submit-btn" id="add-drive"><i class="fab fa-google-drive"></i> Ajouter un lien Drive</button>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <h3>Modifier le contenu existant</h3>
+                <select id="content-select" style="width: 100%; padding: 0.8rem; margin: 1rem 0; border: 1px solid #ddd; border-radius: 5px;">
+                    <option value="">Sélectionnez une section à modifier</option>
+                    <option value="hommage">Texte d'hommage</option>
+                    <option value="biographie">Biographie</option>
+                    <option value="photo">Photo principale</option>
+                </select>
+                
+                <div id="edit-section" style="display: none;">
+                    <textarea id="edit-content" style="width: 100%; min-height: 200px; padding: 1rem; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 1rem;"></textarea>
+                    <button class="submit-btn" id="save-changes">Enregistrer les modifications</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Site réalisé par Kami en hommage au Dr Nehal Abdenacer (1957-2024)</p>
+        <p>© 2024 - Tous droits réservés</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Gestion des onglets
+            $('.tab').click(function() {
+                $('.tab').removeClass('active');
+                $(this).addClass('active');
+                
+                const tabId = $(this).data('tab');
+                $('.tab-content').removeClass('active');
+                $(`#${tabId}-tab`).addClass('active');
+                
+                // Scroll vers le haut pour les petits écrans
+                if ($(window).width() < 768) {
+                    $('html, body').animate({
+                        scrollTop: $('.tabs').offset().top - 20
+                    }, 300);
+                }
+            });
+            
+            // Recherche
+            $('#search-button').click(function() {
+                const query = $('#search-input').val().toLowerCase();
+                if (query.trim() === '') return;
+                
+                // Recherche simple dans tout le contenu
+                $('.tab-content').each(function() {
+                    const content = $(this).text().toLowerCase();
+                    if (content.includes(query)) {
+                        const tabId = $(this).attr('id').replace('-tab', '');
+                        $(`.tab[data-tab="${tabId}"]`).click();
+                        return false;
+                    }
+                });
+                
+                // Mise en surbrillance des résultats (simplifiée)
+                $('.tab-content.active').html(function(i, html) {
+                    return html.replace(new RegExp(query, 'gi'), match => 
+                        `<span style="background-color: yellow;">${match}</span>`
+                    );
+                });
+            });
+            
+            // Gestion des ressources (YouTube/Drive)
+            $('.resource-link').click(function(e) {
+                e.preventDefault();
+                const type = $(this).data('type');
+                const title = $(this).find('h3').text();
+                
+                $('#viewer-title').text(title);
+                
+                if (type === 'youtube') {
+                    $('#viewer-content').html(`
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    `);
+                } else {
+                    $('#viewer-content').html(`
+                        <div style="padding: 2rem; text-align: center;">
+                            <i class="fas fa-file-pdf" style="font-size: 5rem; color: #e74c3c; margin-bottom: 1rem;"></i>
+                            <p>Prévisualisation non disponible pour ce document</p>
+                            <p style="margin-top: 1rem;"><a href="#" style="color: var(--primary);">Ouvrir dans Google Drive</a></p>
+                        </div>
+                    `);
+                }
+                
+                $('.viewer-container').fadeIn();
+                $('html, body').animate({
+                    scrollTop: $('.viewer-container').offset().top - 20
+                }, 300);
+            });
+            
+            $('#close-viewer').click(function() {
+                $('.viewer-container').fadeOut();
+            });
+            
+            // Soumission de témoignage
+            $('#submit-testimonial').click(function() {
+                const name = $('#testimonial-name').val() || 'Anonyme';
+                const text = $('#testimonial-text').val();
+                
+                if (text.trim() === '') {
+                    alert('Veuillez écrire un témoignage');
+                    return;
+                }
+                
+                $('#temoignages-tab').prepend(`
+                    <div class="testimonial">
+                        <p>"${text}"</p>
+                        <div class="testimonial-author">- ${name}</div>
+                    </div>
+                `);
+                
+                $('#testimonial-name, #testimonial-text').val('');
+                alert('Merci pour votre témoignage !');
+            });
+            
+            // Soumission de contact
+            $('#submit-contact').click(function() {
+                const name = $('#contact-name').val();
+                const email = $('#contact-email').val();
+                const message = $('#contact-message').val();
+                
+                if (!name || !email || !message) {
+                    alert('Veuillez remplir tous les champs');
+                    return;
+                }
+                
+                // Envoi simulé
+                $('#contact-name, #contact-email, #contact-message').val('');
+                alert('Merci pour votre message. Nous vous répondrons dès que possible.');
+            });
+            
+            // Administration
+            $('#admin-login').click(function() {
+                const username = $('#admin-username').val();
+                const password = $('#admin-password').val();
+                
+                if (username === 'Kami Kami' && password === 'Kami%%2025') {
+                    $('#login-section').hide();
+                    $('#admin-panel').show();
+                } else {
+                    alert('Identifiants incorrects');
+                }
+            });
+            
+            // Glisser-déposer
+            const dragDropArea = document.getElementById('drag-drop-area');
+            const fileInput = document.getElementById('file-input');
+            
+            dragDropArea.addEventListener('click', () => fileInput.click());
+            
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dragDrop
